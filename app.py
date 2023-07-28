@@ -17,7 +17,7 @@ handler = WebhookHandler(os.environ.get("CHANNEL_SECRET"))
 @app.route("/", methods=["GET", "POST"])
 def callback():
     if request.method == "GET":
-        return "Hello Heroku"
+        return "Hello Herokuuuuuuuu"
     if request.method == "POST":
         signature = request.headers["X-Line-Signature"]
         body = request.get_data(as_text=True)

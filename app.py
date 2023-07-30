@@ -8,10 +8,6 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
-import base64
-import hashlib
-import hmac
-
 app = Flask(__name__)
 
 channel_secret = os.environ.get("CHANNEL_SECRET")
@@ -40,7 +36,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     get_message = event.message.text
-
+    get_message = get_message + str(datetime.date())
     # Send To Line
     reply = TextSendMessage(text=f"{get_message}")
     line_bot_api.reply_message(event.reply_token, reply)
